@@ -4,9 +4,15 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'form',
+      name: 'learn',
       component: () => import('../components/MyForm.vue'),
-    }
+    },
+    {
+  path: '/notes',
+  name: 'Notes',
+  component: () => import('../components/NotesPage.vue')
+  
+}
 
   ],
 })
