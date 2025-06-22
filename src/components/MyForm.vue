@@ -28,7 +28,7 @@
               id="topicName"
               name="topicName"
               v-model="formData.topicName"
-              placeholder="Example Topic: Photosynthesis"
+              placeholder="Example Topic: e.g. Gravity, Photosynthesis, The Pythagorean Theorem, directional derivatives"
               rows="2"
             ></textarea>
             <small>
@@ -36,7 +36,8 @@
               A good rule of thumb:<br>
               Not a whole field (“nutrition”)<br>
               Not just a word (“protein”)<br>
-              → But something like: “How your body uses protein to build muscle"
+              → But something like: “How your body uses protein to build muscle"<br>
+              If you're unsure, just write what's on your mind—you can always refine it later!
             </small>
           </div>
         </div>
@@ -51,12 +52,13 @@
               id="formaldef"
               name="formaldef"
               v-model="formData.formaldef"
-              placeholder="Photosynthesis is the process by which green plants and some other organisms use sunlight to synthesize foods (mainly glucose) from carbon dioxide and water."
+              placeholder="Gravity is the force that pulls objects toward each other. For example, it keeps us on the ground and makes things fall."
               rows="3"
             ></textarea>
             <small>
               Copy it from your textbook, class notes, or Wikipedia.
               This is your launch point — even if it makes no sense to you yet.
+              You're not supposed to get it all at once.
             </small>
           </div>
             <div class="group">
@@ -67,7 +69,7 @@
               id="kg1"
               name="kg1"
               v-model="formData.kg1"
-              placeholder="synthesize, glucose, carbon dioxide, process, organisms"
+              placeholder="force, mass, acceleration, attraction"
               rows="2"
             ></textarea>
             <small>
@@ -79,7 +81,7 @@
           </div>
         </div>
 
-        <!-- Step 3: Unfamiliar Words -->
+        <!-- Step 3: Zoom out -->
         <div v-if="step === 3">
           <div class="group">
             <label for="zoomout">
@@ -89,18 +91,19 @@
               id="zoomout"
               name="zoomout"
               v-model="formData.zoomout"
-              placeholder="I know plants have cells and they need food to grow. I also remember that energy comes from sunlight. But I'm not sure how that turns into “food” inside the plant."
+              placeholder="Gravity is part of physics. It connects to things like motion, planets orbiting the sun, and why things fall down."
               rows="3"
             ></textarea>
             <small>
               Try to name the bigger ideas or steps that lead up to this one. You don't have to explain them fully — just see if you get the neighborhood.<br><br>
               Explain in your own words, you are the only one to see these notes so don't be afraid of any grammar or typos.<br>
-              You are doing great :>
+              You are doing great :> <br>
+              Remember, you're just mapping the neighborhood, not building the whole city!
             </small>
           </div>
         </div>
 
-        <!-- Step 4: Zoom Out -->
+        <!-- Step 4: Analogy -->
         <div v-if="step === 4">
           <h4>Build the Bridge Part - 1</h4>
           <div class="group">
@@ -111,7 +114,7 @@
               id="textarea_3"
               name="textarea_3"
               v-model="formData.textarea_3"
-              placeholder="Photosynthesis is kind of like a solar-powered kitchen. The sunlight is like electricity, the plant's leaves are the chefs, and glucose is the food they cook."
+              placeholder="Gravity is like an invisible magnet that pulls everything toward the ground."
               rows="3"
             ></textarea>
             <small>
@@ -122,7 +125,7 @@
           </div>
         </div>
 
-        <!-- Step 5: Analogy -->
+        <!-- Step 5: Relate -->
         <div v-if="step === 5">
           <h4>Build the Bridge Part - 2</h4>
           <div class="group">
@@ -133,18 +136,20 @@
               id="textarea_4"
               name="textarea_4"
               v-model="formData.textarea_4"
-              placeholder="It helps me understand why sunlight is so important for my garden plants. If they don't get light, they can't make their own food and might wilt."
+              placeholder="When I jump, gravity pulls me back down. It's why my basketball falls through the hoop. It's also why the moon orbits Earth."
               rows="3"
             ></textarea>
             <small>
               Find how this topic shows up in your real life or the things you care about.
               Don't settle for textbook examples — play with it.
               Someone smart made connections. Now you get to make yours
+              <br>
+              Try thinking: “Where have I seen this in real life?” or “How would I explain this to a friend?”
             </small>
           </div>
         </div>
 
-        <!-- Step 6: Relate -->
+        <!-- Step 6: Plain English -->
         <div v-if="step === 6">
           <div class="group">
             <label for="textarea_5">
@@ -154,8 +159,8 @@
               id="textarea_5"
               name="textarea_5"
               v-model="formData.textarea_5"
-              placeholder="Photosynthesis is how plants use sunlight, water, and air to make their own food. It's their way of converting energy from the sun into something they can grow with."
-              rows="2"
+              placeholder="Gravity is a force that pulls things toward each other. It's what keeps us on the ground and makes things fall when we drop them."
+              rows="3"
             ></textarea>
             <small>
               It's so okay if you feel stuck, just note down the exact place you are stuck below<br><br>
@@ -169,7 +174,7 @@
               id="textarea_7"
               name="textarea_7"
               v-model="formData.textarea_7"
-              placeholder="Plants eat sunlight and turn it into sugar."
+              placeholder="Gravity pulls everything down."
               rows="1"
             ></textarea>
             <small>
@@ -184,9 +189,9 @@
               id="textarea_6"
               name="textarea_6"
               v-model="formData.textarea_6"
-              placeholder="How does light become energy?
-What is glucose exactly?
-Is oxygen a waste product or part of the food?"
+              placeholder="Why don't we feel gravity pulling us sideways?
+              How does gravity work in space?
+              Why do astronauts float?"
               rows="3"
             ></textarea>
             <small>
@@ -195,7 +200,7 @@ Is oxygen a waste product or part of the food?"
           </div>
         </div>
 
-        <!-- Step 7: Plain English -->
+        <!-- Step 7:  Knowledge Gaps-->
         <div v-if="step === 7">
 
           <h3>Last lap little buddy, we are almost there</h3>
@@ -237,7 +242,7 @@ Is oxygen a waste product or part of the food?"
           </div>
         </div>
 
-        <!-- Step 8: Knowledge Gaps -->
+        <!-- Step 8: Explain like I am 5 -->
         <div v-if="step === 8">
           <div class="group">
             <label for="textarea_8">
@@ -247,11 +252,12 @@ Is oxygen a waste product or part of the food?"
               id="textarea_8"
               name="textarea_8"
               v-model="formData.textarea_8"
-              placeholder="Okay, so plants are like tiny chefs. They take sunlight, some air, and a drink of water. Then they mix it all up to make sugar snacks to grow big and strong! And while cooking, they blow out little puffs of air we call oxygen — and that's what we breathe. Isn't that cool?"
+              placeholder="Gravity is like a big invisible hand that keeps your feet on the ground and makes your ball come back down when you throw it up."
               rows="4"
             ></textarea>
             <small>
               We've got a very curious 5-year-old here. Use stories, voices, wild metaphors — anything to make them go ohhhh!<br><br>
+              Imagine you’re telling a bedtime story, or explaining to your younger self. <br>
               The key is, to explain the topic in a way that the kid would understand<br><br>
               If you are not able to fully, it's okay!!! go back on these steps, and redo it anytime, as much as we want<br><br>
             </small>
@@ -303,7 +309,7 @@ const formData = ref({
 })
 
 const gapList = computed(() => [
-  ...formData.value.kg1.split('\n').filter(item => item.trim() !== ''),
+  ...formData.value.kg1.split(',').filter(item => item.trim() !== ''),
   ...formData.value.textarea_6.split('\n').filter(item => item.trim() !== '')
 ])
 const router = useRouter()
