@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://www.flaticon.com/free-icons/book">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn like you are 5</title>
+    <script type="module" crossorigin src="/learn-better/assets/index-Dg-hV58x.js"></script>
+    <link rel="stylesheet" crossorigin href="/learn-better/assets/index-D9ZF3YXn.css">
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <style>
+    /* === GLOBAL STYLES === */
+body {
+  background: linear-gradient(120deg, #f0f7ff 0%, #f9fafb 100%);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #1e293b;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.01em;
+}
+
+#app {
+  max-width: 900px;
+  margin: 2.5rem auto 2rem auto;
+  padding: 0 1.2rem;
+}
+
+h1 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #2563eb;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+
+p, em {
+  font-size: 1.08rem;
+  color: #334155;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+em {
+  color: #2563eb;
+  font-style: italic;
+}
+
+a, .router-link-active {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* === FORM & NOTES CARD === */
+.form-card, .notes-page {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07), 0 1.5px 6px 0 rgba(0,0,0,0.03);
+  padding: 2.5rem 2rem;
+  margin: 2rem auto;
+  max-width: 700px;
+}
+
+@media (max-width: 700px) {
+  .form-card, .notes-page {
+    padding: 1.2rem 0.5rem;
+    max-width: 98vw;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* === STEPPER === */
+.stepper-container {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.stepper {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 210px;
+  /* max-height: 80vh;
+  overflow-y: auto; */
+
+}
+
+.stepper-step {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  border-left: 4px solid #e5e7eb;
+  color: #64748b;
+  font-weight: 500;
+  transition: background 0.2s, border-color 0.2s;
+  background: transparent;
+}
+
+.stepper-step.active {
+  background: #f0f7ff;
+  border-left: 4px solid #2563eb;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.stepper-index {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  margin-right: 1em;
+  border-radius: 50%;
+  background: #e0e7ef;
+  color: #2563eb;
+  text-align: center;
+  line-height: 2em;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+@media (max-width: 900px) {
+  .stepper-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .stepper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .stepper-step {
+    flex-direction: column;
+    align-items: flex-start;
+    border-left: none;
+    border-top: 4px solid #e5e7eb;
+    padding: 0.7rem 0.5rem;
+    min-width: 120px;
+  }
+  .stepper-step.active {
+    border-top: 4px solid #2563eb;
+    background: #f0f7ff;
+  }
+  .stepper-index {
+    margin-right: 0;
+    margin-bottom: 0.3em;
+  }
+}
+
+/* === BUTTONS === */
+button,
+.download-btn {
+  background: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.08rem;
+  padding: 0.8rem 2.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 8px 0 rgba(37,99,235,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled),
+.download-btn:hover {
+  background: linear-gradient(90deg, #1d4ed8 0%, #38bdf8 100%);
+  box-shadow: 0 4px 16px 0 rgba(37,99,235,0.13);
+}
+
+/* === FORM FIELDS === */
+.group {
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
+}
+
+textarea,
+input[type="text"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: #f9fafb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 0.2rem;
+  resize: vertical;
+  min-height: 2.5rem;
+  outline: none;
+}
+
+textarea:focus,
+input[type="text"]:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px #bae6fd;
+  background: #fff;
+}
+
+small {
+  display: block;
+  margin-top: 0.3rem;
+  color: #64748b;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* === CHECKBOX GROUP === */
+.checkboxgroup {
+  background: #f3f6fa;
+  border-radius: 10px;
+  padding: 1.2rem 1rem 1rem 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 4px 0 rgba(37,99,235,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.checkbox-item:hover {
+  background: #e0e7ef;
+}
+
+.checkbox-item input[type="checkbox"] {
+  accent-color: #2563eb;
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.7em;
+  transition: box-shadow 0.15s;
+  box-shadow: 0 0 0 1.5px #60a5fa33;
+}
+
+.checkbox-item label {
+  font-size: 1.03rem;
+  color: #1e293b;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.checkbox-item label.striked {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
+
+/* === NOTES PAGE === */
+.rendered-notes {
+  background: #f3f6fa;
+  border-radius: 8px;
+  padding: 2rem 2rem 1.5rem 2rem;
+  margin-top: 1.5rem;
+}
+.rendered-notes h1 {
+  font-size: 2rem;
+  color: #1e293b;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+.rendered-notes h3 {
+  color: #2563eb;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.rendered-notes p {
+  color: #334155;
+  font-size: 1.08rem;
+  margin-bottom: 0.5rem;
+}
+.rendered-notes ul {
+  margin: 0.5em 0 0 1.2em;
+  padding: 0;
+}
+.rendered-notes li {
+  font-size: 1.08rem;
+  color: #2563eb;
+  margin-bottom: 0.3em;
+  list-style: none;
+  display: flex;
+}
+.rendered-notes li span {
+  margin-right: 0.5em;
+}
+
+/* === TIPS BOX === */
+.tips {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 2rem;
+  color: #334155;
+  font-size: 1rem;
+}
+
+.tips ul {
+  margin: 0.5em 0 0 1.2em;
+  padding: 0;
+}
+
+.rendered-notes,
+.rendered-notes h1,
+.rendered-notes h3,
+.rendered-notes p,
+.rendered-notes ul,
+.rendered-notes li {
+  text-align: left;
+}
+  </style>
+</html>
