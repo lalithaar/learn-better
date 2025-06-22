@@ -27,7 +27,7 @@ You’ll end with a beautifully structured Markdown note — ready to copy, save
 
 ## 💻 Try it out
 
-👉 [Website](http://lalithaar.github.io/learn-better/)  
+👉 [Learn like you are 5](http://lalithaar.github.io/learn-better/)  
 
 ---
 
