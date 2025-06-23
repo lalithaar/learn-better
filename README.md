@@ -67,6 +67,7 @@ No fancy plugins. Just heartfelt, reactive code.
 This project is licensed under the **GNU General Public License v3.0 (GPLv3)**.
 
 You are free to use, modify, and share this project — but derivative works must remain under the same license.
+Commercial use is not permitted — any adaptations must also remain open source and freely available.
 
 > This is a learning tool made with care. May it spread freely and help deeply. 🌱
 
