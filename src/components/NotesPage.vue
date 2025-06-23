@@ -69,7 +69,7 @@ function downloadMarkdown() {
       <h1>{{ notesData.topicName }}</h1>
 
       <section v-if="notesData.formaldef">
-        <h3>Textbook Definition</h3>
+        <h3>What the Book Says</h3>
         <p>{{ notesData.formaldef }}</p>
       </section>
 
@@ -79,32 +79,32 @@ function downloadMarkdown() {
       </section>
 
       <section v-if="notesData.zoomout">
-        <h3>Zoom Out</h3>
+        <h3>The Big Picture</h3>
         <p>{{ notesData.zoomout }}</p>
       </section>
 
       <section v-if="notesData.textarea_3">
-        <h3>Analogy</h3>
+        <h3>Analogy Playground</h3>
         <p>{{ notesData.textarea_3 }}</p>
       </section>
 
       <section v-if="notesData.textarea_4">
-        <h3>Relate</h3>
+        <h3>Personal Connection</h3>
         <p>{{ notesData.textarea_4 }}</p>
       </section>
 
       <section v-if="notesData.textarea_5">
-        <h3>Plain English (Paragraph)</h3>
+        <h3>In a paragraph</h3>
         <p>{{ notesData.textarea_5 }}</p>
       </section>
 
       <section v-if="notesData.textarea_7">
-        <h3>Plain English (Sentence)</h3>
+        <h3>One liner</h3>
         <p>{{ notesData.textarea_7 }}</p>
       </section>
 
       <section v-if="notesData.textarea_6">
-        <h3>Stuck Points</h3>
+        <h3>Brain Bloopers</h3>
         <p>{{ notesData.textarea_6 }}</p>
       </section>
 
