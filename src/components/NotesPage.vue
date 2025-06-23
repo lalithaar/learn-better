@@ -15,31 +15,28 @@ function generateMarkdown(data) {
   return `
 # ${data.topicName}
 
-## Textbook Definition
+## What the Book Says
 ${data.formaldef}
 
-## Unfamiliar Words
-${data.kg1}
-
-## Zoom Out
+## The Big Picture
 ${data.zoomout}
 
-## Analogy
+## Analogy Playground
 ${data.textarea_3}
 
-## Relate
+## Personal Connection
 ${data.textarea_4}
 
-## Plain English (Paragraph)
+## In a paragraph
 ${data.textarea_5}
 
-## Plain English (Sentence)
+## One liner
 ${data.textarea_7}
 
-## Stuck Points
+## Brain Bloopers
+${data.kg1}
 ${data.textarea_6}
 
-## Knowledge Gaps
 ${(data.checkboxgroup || []).map(item => `- [x] ${item}`).join('\n')}
 
 ## Explain Like I'm 5
