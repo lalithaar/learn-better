@@ -12,6 +12,21 @@ onMounted(() => {
 })
 
 function generateMarkdown(data) {
+  let knowledgeGapsSection = '';
+  
+  // Check if we have new Q&A format
+  if (data.gapAnswers && Object.keys(data.gapAnswers).length > 0) {
+    knowledgeGapsSection = Object.entries(data.gapAnswers)
+      .map(([question, answer]) => {
+        const answerText = answer && answer.trim() ? answer : '_No answer provided yet_';
+        return `**Q:** ${question}\n\n**A:** ${answerText}`;
+      })
+      .join('\n\n---\n\n');
+  } else if (data.checkboxgroup && data.checkboxgroup.length > 0) {
+    // Fallback to old checkbox format
+    knowledgeGapsSection = data.checkboxgroup.map(item => `- [x] ${item}`).join('\n');
+  }
+
   return `
 # ${data.topicName}
 
@@ -37,7 +52,8 @@ ${data.textarea_7}
 ${data.kg1}
 ${data.textarea_6}
 
-${(data.checkboxgroup || []).map(item => `- [x] ${item}`).join('\n')}
+## Knowledge Gaps - Questions & Answers
+${knowledgeGapsSection}
 
 ## Explain Like I'm 5
 ${data.textarea_8}
@@ -108,9 +124,26 @@ function downloadMarkdown() {
         <p>{{ notesData.textarea_6 }}</p>
       </section>
 
-      <section v-if="notesData.checkboxgroup && notesData.checkboxgroup.length">
+      <section v-if="(notesData.gapAnswers && Object.keys(notesData.gapAnswers).length > 0) || (notesData.checkboxgroup && notesData.checkboxgroup.length)">
         <h3>Knowledge Gaps</h3>
-        <ul>
+        
+        <!-- New Q&A format -->
+        <div v-if="notesData.gapAnswers && Object.keys(notesData.gapAnswers).length > 0" class="qa-section">
+          <div v-for="(answer, question) in notesData.gapAnswers" :key="question" class="qa-item">
+            <div class="question">
+              <strong>Q:</strong> {{ question }}
+            </div>
+            <div class="answer" v-if="answer && answer.trim()">
+              <strong>A:</strong> {{ answer }}
+            </div>
+            <div class="answer no-answer" v-else>
+              <em>No answer provided yet</em>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Fallback for old checkbox format -->
+        <ul v-else-if="notesData.checkboxgroup && notesData.checkboxgroup.length">
           <li v-for="(item, idx) in notesData.checkboxgroup" :key="idx">
             <span>✅</span> {{ item }}
           </li>
@@ -195,5 +228,36 @@ function downloadMarkdown() {
 }
 .rendered-notes li span {
   margin-right: 0.5em;
+}
+
+.qa-section {
+  margin: 1rem 0;
+}
+
+.qa-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #2563eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.qa-item .question {
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.qa-item .answer {
+  color: #334155;
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+
+.qa-item .answer.no-answer {
+  color: #94a3b8;
+  font-style: italic;
 }
 </style>
