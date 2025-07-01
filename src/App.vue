@@ -14,6 +14,7 @@ const parentFormData = ref({
   textarea_7: '',
   textarea_8: '',
   checkboxgroup: [],
+  gapAnswers: {},
 }) // <-- use ref for reactivity
 
 </script>

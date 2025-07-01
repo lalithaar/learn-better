@@ -204,28 +204,28 @@
         <div v-if="step === 7">
 
           <h3>Last lap little buddy, we are almost there</h3>
-          <div>Let's tidy Up the Gaps</div>
-          <label>Here's what's still a little fuzzy</label>
+          <div>Let's clear up the Gaps</div>
+          <label>Here's what's still a little fuzzy - let's solve them one by one</label>
           <small>
-            Search them up, refer to textbooks / YouTube videos / chatgpt and tick the marks as you go through each one
+            Search them up, refer to textbooks / YouTube videos / chatgpt and write your understanding for each doubt below
           </small>
 
-          <div class="group checkboxgroup">
+          <div class="group question-answer-group">
             <div
               v-for="(item, index) in gapList"
               :key="index"
-              class="checkbox-item"
+              class="question-answer-item"
             >
-              <input
-                type="checkbox"
-                :id="'gap-' + index"
-                v-model="formData.checkboxgroup"
-                :value="item"
-              />
-              <label
-                :for="'gap-' + index"
-                :class="{ striked: formData.checkboxgroup.includes(item) }"
-              >{{ item }}</label>
+              <label :for="'gap-answer-' + index" class="question-label">
+                {{ item }}
+              </label>
+              <textarea
+                :id="'gap-answer-' + index"
+                v-model="formData.gapAnswers[item]"
+                :placeholder="`Write your understanding or solution for: ${item}`"
+                rows="3"
+                class="answer-textarea"
+              ></textarea>
             </div>
           </div>
 
@@ -305,7 +305,8 @@ const formData = ref({
   textarea_6: '',
   textarea_7: '',
   textarea_8: '',
-  checkboxgroup: [],
+  checkboxgroup: [], // Keep for backward compatibility
+  gapAnswers: {}, // New structure: { gap: answer }
 })
 
 const gapList = computed(() => [
@@ -422,7 +423,7 @@ input[type="checkbox"] {
   vertical-align: middle;
 }
 
-.checkboxgroup {
+.question-answer-group {
   background: #f3f6fa;
   border-radius: 10px;
   padding: 1.2rem 1rem 1rem 1rem;
@@ -430,43 +431,48 @@ input[type="checkbox"] {
   box-shadow: 0 1px 4px 0 rgba(37,99,235,0.04);
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 1.5rem;
 }
 
-.checkbox-item {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0.7rem;
+.question-answer-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.question-label {
+  display: block;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 0.7rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  background: #f0f7ff;
+  padding: 0.5rem 0.8rem;
   border-radius: 6px;
-  transition: background 0.15s;
-  cursor: pointer;
+  border-left: 4px solid #2563eb;
 }
 
-.checkbox-item:hover {
-  background: #e0e7ef;
+.answer-textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  border: 1.5px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background: #f9fafb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+  min-height: 2.5rem;
+  outline: none;
 }
 
-.checkbox-item input[type="checkbox"] {
-  accent-color: #2563eb;
-  width: 1.15em;
-  height: 1.15em;
-  margin-right: 0.7em;
-  transition: box-shadow 0.15s;
-  box-shadow: 0 0 0 1.5px #60a5fa33;
-}
-
-.checkbox-item label {
-  font-size: 1.03rem;
-  color: #1e293b;
-  font-weight: 500;
-  cursor: pointer;
-  margin-bottom: 0;
-  /* Remove default margin from label */
-}
-
-.checkbox-item label.striked {
-  text-decoration: line-through;
-  color: #94a3b8;
+.answer-textarea:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px #bae6fd;
+  background: #fff;
 }
 
 .tips {
